@@ -1,0 +1,11 @@
+# docker-compose.yml
+version: '3'
+
+services:
+  web:
+    build: . # 도커 파일 위치
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 # 도커파일 내부 실행명령 덮어쓰기
+    volumes: # 생략가능(사용시 수정에 용이)
+      - .:/app
+    ports:
+      - "8000:8000"
